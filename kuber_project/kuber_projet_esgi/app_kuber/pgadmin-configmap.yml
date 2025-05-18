@@ -1,0 +1,20 @@
+#POD PGADMIN || Service pgadmin
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pgadmin-config
+  namespace: icgroup
+data:
+  servers.json: |
+    {
+      "Servers": {
+        "1": {
+          "Name": "OdooDB",
+          "Group": "Servers",
+          "Host": "odoo-db-host",
+          "Port": 5432,
+          "Username": "odoodb",
+          "SSLMode": "prefer"
+        }
+      }
+    }

@@ -1,0 +1,32 @@
+# POD SERVICE || Deploiement du service odoo
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: odoo
+  namespace: icgroup
+  labels:
+    app: odoo
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: odoo
+  template:
+    metadata:
+      labels:
+        app: odoo
+        env: prod
+    spec:
+      containers:
+      - name: odoo
+        image: odoo:16.0
+        ports:
+        - containerPort: 8069
+        volumeMounts:
+        - name: odoo-service
+          mountPath: /var/lib/odoo
+      volumes:
+      - name: odoo-service
+        persistentVolumeClaim:
+          claimName: odoo-data-pvc

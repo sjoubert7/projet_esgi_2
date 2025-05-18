@@ -1,0 +1,49 @@
+# POD PGADMIN || Déploiement du service PGADMIN
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pgadmin
+  namespace: icgroup
+  labels:
+    app: pgadmin
+    env: prod
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  template:
+    metadata:
+      labels:
+        app: pgadmin
+        env: prod
+    spec:
+      containers:
+      - name: pgadmin
+        image: dpage/pgadmin4:8.5
+        ports:
+        - containerPort: 80
+        env:
+        - name: PGADMIN_DEFAULT_EMAIL
+          valueFrom:
+            secretKeyRef:
+              name: pgadmin-secret
+              key: email
+        - name: PGADMIN_DEFAULT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: pgadmin-secret
+              key: password
+        volumeMounts:
+        - name: pgadmin-data
+          mountPath: /var/lib/pgadmin
+        - name: servers-json
+          mountPath: /pgadmin4/servers.json
+          subPath: servers.json
+      volumes:
+      - name: pgadmin-data
+        persistentVolumeClaim:
+          claimName: pgadmin-pvc
+      - name: servers-json
+        configMap:
+          name: pgadmin-config

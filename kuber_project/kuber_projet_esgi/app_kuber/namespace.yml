@@ -1,0 +1,7 @@
+# POD space || Nom de l'environnement
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: icgroup
+  labels:
+    env: prod

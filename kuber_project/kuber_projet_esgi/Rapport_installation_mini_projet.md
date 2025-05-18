@@ -22,3 +22,17 @@ On va créer le dossier "app_kuber" et on va ajouter les fichiers qui seront des
 
 Ensuite tous vont être configurer pour mettre en place le service web, par ailleurs il faut créer dans la racine un dossier pgadmin4 pour qu'il héberge le fichier servers.json du client.
 
+On configure les fichier suivant :
+
+![fichier_pod](.capture_projet/fichier_pod.png "fichier_pod")
+
+ensuite pour déployer tout ces fichier on lance la commande suivante :
+kubectl apply -f .
+
+Ce qui donne ceci :
+
+![kuber_deploiement](.capture_projet/kuber_deploiement.png "kuber_deploiement")
+
+Si tout s'est bien dérouler vous devez arriver a obtenir les deux applications.
+
+
