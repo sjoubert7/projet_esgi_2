@@ -24,14 +24,14 @@ Ensuite tous vont être configurer pour mettre en place le service web, par aill
 
 On configure les fichier suivant :
 
-![fichier_pod](.capture_projet/fichier_pod.png "fichier_pod")
+![fichier_pod](capture_projet/fichier_pod.png)
 
 ensuite pour déployer tout ces fichier on lance la commande suivante :
 kubectl apply -f .
 
 Ce qui donne ceci :
 
-![kuber_deploiement](.capture_projet/kuber_deploiement.png "kuber_deploiement")
+![kuber_deploiement](capture_projet/kuber_deploiement.png)
 
 Si tout s'est bien dérouler vous devez arriver a obtenir les deux applications.
 
